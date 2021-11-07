@@ -103,6 +103,16 @@ set(LIBRARY_SRCS
   libraries/WiFi/src/WiFiUdp.cpp
   libraries/WiFiProv/src/WiFiProv.cpp
   libraries/Wire/src/Wire.cpp
+  libraries/M5StickC-Plus/src/AXP192.cpp
+  libraries/M5StickC-Plus/src/M5Display.cpp
+  libraries/M5StickC-Plus/src/M5StickCPlus.cpp
+  libraries/M5StickC-Plus/src/RTC.cpp
+  libraries/M5StickC-Plus/src/utility/Button.cpp
+  libraries/M5StickC-Plus/src/utility/In_eSPI.cpp
+  libraries/M5StickC-Plus/src/utility/MahonyAHRS.cpp
+  libraries/M5StickC-Plus/src/utility/MPU6886.cpp
+  libraries/M5StickC-Plus/src/utility/Speaker.cpp
+  libraries/M5StickC-Plus/src/utility/Sprite.cpp
   )
 
 set(BLE_SRCS
@@ -155,6 +165,7 @@ set(includedirs
   libraries/HTTPUpdate/src
   libraries/LittleFS/src
   libraries/NetBIOS/src
+  libraries/M5StickC-Plus/src
   libraries/Preferences/src
   libraries/RainMaker/src
   libraries/SD_MMC/src
