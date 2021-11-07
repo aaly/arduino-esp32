@@ -22,14 +22,18 @@
 #include "BLESecurity.h"
 #include "RTOS.h"
 #include "BLEAddress.h"
+#include "BLEDevice.h"
+
 
 class BLEServerCallbacks;
-/* TODO possibly refactor this struct */ 
-typedef struct {
+/* TODO possibly refactor this struct */
+class conn_status_t
+{
+	public:
 	void *peer_device;		// peer device BLEClient or BLEServer - maybe its better to have 2 structures or union here
 	bool connected;			// do we need it?
 	uint16_t mtu;			// every peer device negotiate own mtu
-} conn_status_t;
+};
 
 
 /**

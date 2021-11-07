@@ -21,6 +21,12 @@
 #include "BLEScan.h"
 #include "BLEAddress.h"
 
+class BLEServer;
+class BLEAdvertising;
+class BLEScan;
+class BLESecurityCallbacks;
+class conn_status_t;
+
 /**
  * @brief BLE functions.
  */

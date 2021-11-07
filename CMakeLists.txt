@@ -113,6 +113,13 @@ set(LIBRARY_SRCS
   libraries/M5StickC-Plus/src/utility/MPU6886.cpp
   libraries/M5StickC-Plus/src/utility/Speaker.cpp
   libraries/M5StickC-Plus/src/utility/Sprite.cpp
+  libraries/M5StickC-Plus/src/Fonts/Font16.c
+  libraries/M5StickC-Plus/src/Fonts/Font32rle.c
+  libraries/M5StickC-Plus/src/Fonts/Font64rle.c
+  libraries/M5StickC-Plus/src/Fonts/Font72rle.c
+  libraries/M5StickC-Plus/src/Fonts/Font7srle.c
+  libraries/M5StickC-Plus/src/Fonts/glcdfont.c
+  libraries/M5StickC-Plus/src/utility/qrcode.c
   )
 
 set(BLE_SRCS

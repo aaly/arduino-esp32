@@ -15,6 +15,9 @@
 #include <string>
 #include "BLEClient.h"
 
+class BLEAddress;
+class BLEClient;
+
 /**
  * @brief A set of general %BLE utilities.
  */
