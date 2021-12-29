@@ -1,3 +1,4 @@
 [submodule "libraries/M5StickC-Plus"]
 	path = libraries/M5StickC-Plus
 	url = https://github.com/aaly/M5StickC-Plus.git
+	branch = master
