@@ -139,18 +139,6 @@ BaseType_t xPortInIsrContext(void);
  */
 BaseType_t xPortInterruptedFromISRContext(void);
 
-/**
- * @brief Disable interrupts in a nested manner
- *
- * - Cleaner solution allows nested interrupts disabling and restoring via local registers or stack.
- * - They can be called from interrupts too.
- * - WARNING Only applies to current CPU.
- *
- * @note [refactor-todo] Define this as portSET_INTERRUPT_MASK_FROM_ISR() instead
- * @return unsigned Previous interrupt state
- */
-static inline unsigned portENTER_CRITICAL_NESTED(void);
-
 /* ---------------------- Spinlocks ------------------------
  - Spinlocks added to match API with SMP FreeRTOS. Single core RISC-V does not need spin locks
  - Because single core does not have a primitive spinlock data type, we have to implement one here
@@ -174,69 +162,19 @@ static inline unsigned portENTER_CRITICAL_NESTED(void);
 typedef struct {
     uint32_t owner;
     uint32_t count;
-#ifdef CONFIG_FREERTOS_PORTMUX_DEBUG
-    const char *lastLockedFn;
-    int lastLockedLine;
-#endif
 } portMUX_TYPE;
 /**< Spinlock initializer */
-#ifndef CONFIG_FREERTOS_PORTMUX_DEBUG
-#define portMUX_INITIALIZER_UNLOCKED {                  \
+#define portMUX_INITIALIZER_UNLOCKED {                      \
             .owner = portMUX_FREE_VAL,                      \
             .count = 0,                                     \
         }
-#else
-#define portMUX_INITIALIZER_UNLOCKED {                  \
-            .owner = portMUX_FREE_VAL,                      \
-            .count = 0,                                     \
-            .lastLockedFn = "(never locked)",               \
-            .lastLockedLine = -1                            \
-        }
-#endif /* CONFIG_FREERTOS_PORTMUX_DEBUG */
-#define portMUX_FREE_VAL        SPINLOCK_FREE           /**< Spinlock is free. [refactor-todo] check if this is still required */
-#define portMUX_NO_TIMEOUT      SPINLOCK_WAIT_FOREVER   /**< When passed for 'timeout_cycles', spin forever if necessary. [refactor-todo] check if this is still required */
-#define portMUX_TRY_LOCK        SPINLOCK_NO_WAIT        /**< Try to acquire the spinlock a single time only. [refactor-todo] check if this is still required */
-
-/**
- * @brief Initialize a spinlock
- *
- * - Initializes a spinlock that is used by FreeRTOS SMP critical sections
- *
- * @note [refactor-todo] We can make this inline or consider making it a macro
- * @param[in] mux Spinlock
- */
-void vPortCPUInitializeMutex(portMUX_TYPE *mux);
-
-/**
- * @brief Acquire a spinlock
- *
- * @note [refactor-todo] check if we still need this
- * @note [refactor-todo] Check if this should be inlined
- * @param[in] mux Spinlock
- */
-void vPortCPUAcquireMutex(portMUX_TYPE *mux);
-
-/**
- * @brief Acquire a spinlock but with a specified timeout
- *
- * @note [refactor-todo] Check if we still need this
- * @note [refactor-todo] Check if this should be inlined
- * @note [refactor-todo] Check if this function should be renamed (due to bool return type)
- * @param[in] mux Spinlock
- * @param[in] timeout Timeout in number of CPU cycles
- * @return true Spinlock acquired
- * @return false Timed out
- */
-bool vPortCPUAcquireMutexTimeout(portMUX_TYPE *mux, int timeout_cycles);
-
-/**
- * @brief Release a spinlock
- *
- * @note [refactor-todo] check if we still need this
- * @note [refactor-todo] Check if this should be inlined
- * @param[in] mux Spinlock
- */
-void vPortCPUReleaseMutex(portMUX_TYPE *mux);
+#define portMUX_FREE_VAL                    SPINLOCK_FREE           /**< Spinlock is free. [refactor-todo] check if this is still required */
+#define portMUX_NO_TIMEOUT                  SPINLOCK_WAIT_FOREVER   /**< When passed for 'timeout_cycles', spin forever if necessary. [refactor-todo] check if this is still required */
+#define portMUX_TRY_LOCK                    SPINLOCK_NO_WAIT        /**< Try to acquire the spinlock a single time only. [refactor-todo] check if this is still required */
+#define portMUX_INITIALIZE(mux)    ({ \
+    (mux)->owner = portMUX_FREE_VAL; \
+    (mux)->count = 0; \
+})
 
 /**
  * @brief Wrapper for atomic compare-and-set instruction
@@ -403,19 +341,26 @@ static inline BaseType_t IRAM_ATTR xPortGetCoreID(void)
 
 // --------------------- Interrupts ------------------------
 
-#define portEXIT_CRITICAL_NESTED(state)     do { portCLEAR_INTERRUPT_MASK_FROM_ISR(state);} while(0);
 #define portDISABLE_INTERRUPTS()            portSET_INTERRUPT_MASK_FROM_ISR()
 #define portENABLE_INTERRUPTS()             portCLEAR_INTERRUPT_MASK_FROM_ISR(1)
 #define portSET_INTERRUPT_MASK_FROM_ISR()                       vPortSetInterruptMask()
-#define portCLEAR_INTERRUPT_MASK_FROM_ISR(uxSavedStatusValue) vPortClearInterruptMask(uxSavedStatusValue)
+#define portCLEAR_INTERRUPT_MASK_FROM_ISR(uxSavedStatusValue)   vPortClearInterruptMask(uxSavedStatusValue)
 
 // ------------------ Critical Sections --------------------
 
-#define portENTER_CRITICAL(mux)         {(void)mux;  vPortEnterCritical();}
-#define portEXIT_CRITICAL(mux)          {(void)mux;  vPortExitCritical();}
+#define portENTER_CRITICAL(mux)                 {(void)mux;  vPortEnterCritical();}
+#define portEXIT_CRITICAL(mux)                  {(void)mux;  vPortExitCritical();}
+#define portTRY_ENTER_CRITICAL(mux, timeout)    ({  \
+    (void)mux; (void)timeout;                       \
+    vPortEnterCritical();                           \
+    BaseType_t ret = pdPASS;                        \
+    ret;                                            \
+})
 //In single-core RISC-V, we can use the same critical section API
-#define portENTER_CRITICAL_ISR(mux)     portENTER_CRITICAL(mux)
-#define portEXIT_CRITICAL_ISR(mux)      portEXIT_CRITICAL(mux)
+#define portENTER_CRITICAL_ISR(mux)                 portENTER_CRITICAL(mux)
+#define portEXIT_CRITICAL_ISR(mux)                  portEXIT_CRITICAL(mux)
+#define portTRY_ENTER_CRITICAL_ISR(mux, timeout)    portTRY_ENTER_CRITICAL(mux, timeout)
+
 /* [refactor-todo] on RISC-V, both ISR and non-ISR cases result in the same call. We can redefine this macro */
 #define portENTER_CRITICAL_SAFE(mux)    ({  \
     if (xPortInIsrContext()) {              \
@@ -431,6 +376,7 @@ static inline BaseType_t IRAM_ATTR xPortGetCoreID(void)
         portEXIT_CRITICAL(mux);             \
     }                                       \
 })
+#define portTRY_ENTER_CRITICAL_SAFE(mux, timeout)   portENTER_CRITICAL_SAFE(mux, timeout)
 
 // ---------------------- Yielding -------------------------
 
@@ -472,11 +418,7 @@ static inline BaseType_t IRAM_ATTR xPortGetCoreID(void)
 
 // --------------------- Interrupts ------------------------
 
-static inline unsigned portENTER_CRITICAL_NESTED(void)
-{
-    unsigned state = portSET_INTERRUPT_MASK_FROM_ISR();
-    return state;
-}
+
 
 // ---------------------- Spinlocks ------------------------
 
@@ -537,6 +479,14 @@ bool xPortcheckValidStackMem(const void *ptr);
 
 #define portVALID_TCB_MEM(ptr) xPortCheckValidTCBMem(ptr)
 #define portVALID_STACK_MEM(ptr) xPortcheckValidStackMem(ptr)
+
+
+
+/* ---------------------------------------------------- Deprecate ------------------------------------------------------
+ * - Pull in header containing deprecated macros here
+ * ------------------------------------------------------------------------------------------------------------------ */
+
+#include "portmacro_deprecated.h"
 
 #ifdef __cplusplus
 }
