@@ -117,7 +117,27 @@ set(ARDUINO_ALL_LIBRARIES
   WiFiProv
   Wire
   Zigbee
+  M5StickCPlus
   )
+
+set(ARDUINO_LIBRARY_M5StickCPlus_SRCS
+  libraries/M5StickC-Plus/src/AXP192.cpp
+  libraries/M5StickC-Plus/src/M5Display.cpp
+  libraries/M5StickC-Plus/src/M5StickCPlus.cpp
+  libraries/M5StickC-Plus/src/RTC.cpp
+  libraries/M5StickC-Plus/src/utility/Button.cpp
+  libraries/M5StickC-Plus/src/utility/In_eSPI.cpp
+  libraries/M5StickC-Plus/src/utility/MahonyAHRS.cpp
+  libraries/M5StickC-Plus/src/utility/MPU6886.cpp
+  libraries/M5StickC-Plus/src/utility/Speaker.cpp
+  libraries/M5StickC-Plus/src/utility/Sprite.cpp
+  libraries/M5StickC-Plus/src/Fonts/Font16.c
+  libraries/M5StickC-Plus/src/Fonts/Font32rle.c
+  libraries/M5StickC-Plus/src/Fonts/Font64rle.c
+  libraries/M5StickC-Plus/src/Fonts/Font72rle.c
+  libraries/M5StickC-Plus/src/Fonts/Font7srle.c
+  libraries/M5StickC-Plus/src/Fonts/glcdfont.c
+  libraries/M5StickC-Plus/src/utility/qrcode.c)
 
 set(ARDUINO_LIBRARY_ArduinoOTA_SRCS libraries/ArduinoOTA/src/ArduinoOTA.cpp)
 
@@ -330,7 +350,8 @@ set(ARDUINO_LIBRARY_BLE_SRCS
 
 set(ARDUINO_LIBRARIES_SRCS)
 set(ARDUINO_LIBRARIES_REQUIRES)
-set(ARDUINO_LIBRARIES_INCLUDEDIRS)
+set(ARDUINO_LIBRARIES_INCLUDEDIRS libraries/M5StickC-Plus/src/)
+
 foreach(libname IN LISTS ARDUINO_ALL_LIBRARIES)
   if(NOT CONFIG_ARDUINO_SELECTIVE_COMPILATION OR CONFIG_ARDUINO_SELECTIVE_${libname})
     if(ARDUINO_LIBRARY_${libname}_SRCS)
