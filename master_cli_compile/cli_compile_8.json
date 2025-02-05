@@ -278,7 +278,7 @@
                     },
 {"name": "PPP/examples/PPP_WIFI_BRIDGE",
                     "sizes": [{
-                            "flash_bytes": 906675,
+                            "flash_bytes": 906667,
                             "flash_percentage": 69,
                             "ram_bytes": 39324,
                             "ram_percentage": 12

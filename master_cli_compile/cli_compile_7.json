@@ -302,7 +302,7 @@
                     },
 {"name": "Matter/examples/MatterThermostat",
                     "sizes": [{
-                            "flash_bytes": 1564943,
+                            "flash_bytes": 1564951,
                             "flash_percentage": 49,
                             "ram_bytes": 86096,
                             "ram_percentage": 26
