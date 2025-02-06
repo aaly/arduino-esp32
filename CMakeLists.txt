@@ -117,27 +117,74 @@ set(ARDUINO_ALL_LIBRARIES
   WiFiProv
   Wire
   Zigbee
-  M5StickCPlus
+  M5Unified
+  M5GFX
   )
 
-set(ARDUINO_LIBRARY_M5StickCPlus_SRCS
-  libraries/M5StickC-Plus/src/AXP192.cpp
-  libraries/M5StickC-Plus/src/M5Display.cpp
-  libraries/M5StickC-Plus/src/M5StickCPlus.cpp
-  libraries/M5StickC-Plus/src/RTC.cpp
-  libraries/M5StickC-Plus/src/utility/Button.cpp
-  libraries/M5StickC-Plus/src/utility/In_eSPI.cpp
-  libraries/M5StickC-Plus/src/utility/MahonyAHRS.cpp
-  libraries/M5StickC-Plus/src/utility/MPU6886.cpp
-  libraries/M5StickC-Plus/src/utility/Speaker.cpp
-  libraries/M5StickC-Plus/src/utility/Sprite.cpp
-  libraries/M5StickC-Plus/src/Fonts/Font16.c
-  libraries/M5StickC-Plus/src/Fonts/Font32rle.c
-  libraries/M5StickC-Plus/src/Fonts/Font64rle.c
-  libraries/M5StickC-Plus/src/Fonts/Font72rle.c
-  libraries/M5StickC-Plus/src/Fonts/Font7srle.c
-  libraries/M5StickC-Plus/src/Fonts/glcdfont.c
-  libraries/M5StickC-Plus/src/utility/qrcode.c)
+set(ARDUINO_LIBRARY_M5Unified_SRCS
+  libraries/M5Unified/src/utility/Power_Class.cpp
+  libraries/M5Unified/src/utility/AXP192_Class.cpp
+  libraries/M5Unified/src/utility/Touch_Class.cpp
+  libraries/M5Unified/src/utility/Speaker_Class.cpp
+  libraries/M5Unified/src/utility/imu/MPU6886_Class.cpp
+  libraries/M5Unified/src/utility/imu/AK8963_Class.cpp
+  libraries/M5Unified/src/utility/imu/BMM150_Class.cpp
+  libraries/M5Unified/src/utility/imu/SH200Q_Class.cpp
+  libraries/M5Unified/src/utility/imu/BMI270_Class.cpp
+  libraries/M5Unified/src/utility/imu/IMU_Base.cpp
+  libraries/M5Unified/src/utility/Log_Class.cpp
+  libraries/M5Unified/src/utility/Mic_Class.cpp
+  libraries/M5Unified/src/utility/INA3221_Class.cpp
+  libraries/M5Unified/src/utility/IMU_Class.cpp
+  libraries/M5Unified/src/utility/I2C_Class.cpp
+  libraries/M5Unified/src/utility/IP5306_Class.cpp
+  libraries/M5Unified/src/utility/Button_Class.cpp
+  libraries/M5Unified/src/utility/AXP2101_Class.cpp
+  libraries/M5Unified/src/utility/M5Timer.cpp
+  libraries/M5Unified/src/utility/RTC8563_Class.cpp
+  libraries/M5Unified/src/M5Unified.cpp)
+
+
+set(ARDUINO_LIBRARY_M5GFX_SRCS
+  libraries/M5GFX/src/lgfx/v1/LGFX_Button.cpp
+  libraries/M5GFX/src/lgfx/v1/lgfx_fonts.cpp
+  libraries/M5GFX/src/lgfx/v1/LGFXBase.cpp
+  libraries/M5GFX/src/lgfx/v1/LGFX_Sprite.cpp
+  libraries/M5GFX/src/lgfx/v1/touch/Touch_FT5x06.cpp
+  libraries/M5GFX/src/lgfx/v1/touch/Touch_CST816S.cpp
+  libraries/M5GFX/src/lgfx/v1/touch/Touch_GT911.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/esp32c3/Bus_Parallel8.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/esp32s2/Bus_Parallel8.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/esp32s2/Bus_Parallel16.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/framebuffer/Panel_fb.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/framebuffer/common.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/sdl/common.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/sdl/Panel_sdl.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/esp32s3/Bus_Parallel8.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/esp32s3/Bus_Parallel16.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/esp32/Bus_I2C.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/esp32/Bus_Parallel8.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/esp32/Bus_SPI.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/esp32/Light_PWM.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/esp32/Panel_CVBS.cpp
+  libraries/M5GFX/src/lgfx/v1/platforms/esp32/common.cpp
+  libraries/M5GFX/src/lgfx/v1/misc/common_function.cpp
+  libraries/M5GFX/src/lgfx/v1/misc/DividedFrameBuffer.cpp
+  libraries/M5GFX/src/lgfx/v1/misc/SpriteBuffer.cpp
+  libraries/M5GFX/src/lgfx/v1/misc/pixelcopy.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_LCD.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_GDEW0154D67.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_GDEW0154M09.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_FrameBufferBase.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_M5UnitLCD.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_EPDiy.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_IT8951.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_M5UnitGLASS.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_M5HDMI.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_SSD1306.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_Device.cpp
+  libraries/M5GFX/src/lgfx/v1/panel/Panel_HasBuffer.cpp
+  libraries/M5GFX/src/M5GFX.cpp)
 
 set(ARDUINO_LIBRARY_ArduinoOTA_SRCS libraries/ArduinoOTA/src/ArduinoOTA.cpp)
 
@@ -350,7 +397,7 @@ set(ARDUINO_LIBRARY_BLE_SRCS
 
 set(ARDUINO_LIBRARIES_SRCS)
 set(ARDUINO_LIBRARIES_REQUIRES)
-set(ARDUINO_LIBRARIES_INCLUDEDIRS libraries/M5StickC-Plus/src/)
+set(ARDUINO_LIBRARIES_INCLUDEDIRS libraries/M5Unified/src/ libraries/M5GFX/src/)
 
 foreach(libname IN LISTS ARDUINO_ALL_LIBRARIES)
   if(NOT CONFIG_ARDUINO_SELECTIVE_COMPILATION OR CONFIG_ARDUINO_SELECTIVE_${libname})
@@ -369,7 +416,7 @@ endforeach()
 set(includedirs variants/${CONFIG_ARDUINO_VARIANT}/ cores/esp32/ ${ARDUINO_LIBRARIES_INCLUDEDIRS})
 set(srcs ${CORE_SRCS} ${ARDUINO_LIBRARIES_SRCS})
 set(priv_includes cores/esp32/libb64)
-set(requires spi_flash esp_partition mbedtls wpa_supplicant esp_adc esp_eth http_parser esp_ringbuf esp_driver_gptimer esp_driver_usb_serial_jtag driver)
+set(requires spi_flash esp_partition mbedtls wpa_supplicant esp_adc esp_eth http_parser esp_ringbuf esp_driver_gptimer esp_driver_usb_serial_jtag driver efuse)
 set(priv_requires fatfs nvs_flash app_update spiffs bootloader_support bt esp_hid usb esp_psram ${ARDUINO_LIBRARIES_REQUIRES})
 
 if(NOT CONFIG_ARDUINO_SELECTIVE_COMPILATION OR CONFIG_ARDUINO_SELECTIVE_OpenThread)
