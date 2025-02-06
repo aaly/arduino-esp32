@@ -20,7 +20,7 @@
                     },
 {"name": "SD_MMC/examples/SDMMC_time",
                     "sizes": [{
-                            "flash_bytes": 698345,
+                            "flash_bytes": 698423,
                             "flash_percentage": 53,
                             "ram_bytes": 26976,
                             "ram_percentage": 8
@@ -44,7 +44,7 @@
                     },
 {"name": "SPIFFS/examples/SPIFFS_time",
                     "sizes": [{
-                            "flash_bytes": 693195,
+                            "flash_bytes": 693273,
                             "flash_percentage": 52,
                             "ram_bytes": 26848,
                             "ram_percentage": 8
@@ -278,7 +278,7 @@
                     },
 {"name": "PPP/examples/PPP_WIFI_BRIDGE",
                     "sizes": [{
-                            "flash_bytes": 906667,
+                            "flash_bytes": 906675,
                             "flash_percentage": 69,
                             "ram_bytes": 39324,
                             "ram_percentage": 12
