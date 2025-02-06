@@ -1,11 +1,6 @@
-[submodule "libraries/M5StickC-Plus"]
-	path = libraries/M5StickC-Plus
-	url = https://github.com/aaly/M5StickC-Plus.git
-[submodule "libraries/M5StickCPlus2"]
-	path = libraries/M5StickCPlus2
-	url = https://github.com/aaly/M5StickCPlus2.git
 [submodule "libraries/M5Unified"]
 	path = libraries/M5Unified
 	url = https://github.com/aaly/M5Unified.git
-
-
+[submodule "libraries/M5GFX"]
+	path = libraries/M5GFX
+	url = https://github.com/aaly/M5GFX.git
