@@ -302,7 +302,7 @@
                     },
 {"name": "WebServer/examples/WebUpdate",
                     "sizes": [{
-                            "flash_bytes": 917535,
+                            "flash_bytes": 917527,
                             "flash_percentage": 70,
                             "ram_bytes": 42948,
                             "ram_percentage": 13
