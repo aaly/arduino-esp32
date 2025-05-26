@@ -120,6 +120,7 @@ set(ARDUINO_ALL_LIBRARIES
   Zigbee
   M5Unified
   M5GFX
+  Arduino_GFX
   )
 
 set(ARDUINO_LIBRARY_M5Unified_SRCS
@@ -186,6 +187,107 @@ set(ARDUINO_LIBRARY_M5GFX_SRCS
   libraries/M5GFX/src/lgfx/v1/panel/Panel_Device.cpp
   libraries/M5GFX/src/lgfx/v1/panel/Panel_HasBuffer.cpp
   libraries/M5GFX/src/M5GFX.cpp)
+
+
+set(ARDUINO_LIBRARY_Arduino_GFX_SRCS
+  libraries/Arduino_GFX/src/Arduino_DataBus.cpp
+libraries/Arduino_GFX/src/Arduino_G.cpp
+libraries/Arduino_GFX/src/Arduino_GFX.cpp
+libraries/Arduino_GFX/src/Arduino_GFX_Library.cpp
+libraries/Arduino_GFX/src/Arduino_TFT.cpp
+libraries/Arduino_GFX/src/Arduino_TFT_18bit.cpp
+libraries/Arduino_GFX/src/canvas/Arduino_Canvas.cpp
+libraries/Arduino_GFX/src/canvas/Arduino_Canvas_3bit.cpp
+libraries/Arduino_GFX/src/canvas/Arduino_Canvas_Indexed.cpp
+libraries/Arduino_GFX/src/canvas/Arduino_Canvas_Mono.cpp
+libraries/Arduino_GFX/src/databus/Arduino_AVRPAR16.cpp
+libraries/Arduino_GFX/src/databus/Arduino_AVRPAR8.cpp
+libraries/Arduino_GFX/src/databus/Arduino_DUEPAR16.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32DSIPanel.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32LCD16.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32LCD8.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32PAR16.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32PAR16Q.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32PAR16QQ.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32PAR8.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32PAR8Q.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32PAR8QQ.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32PAR8QQQ.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32QSPI.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32RGBPanel.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32S2PAR16.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32S2PAR16Q.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32S2PAR8.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32S2PAR8Q.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32SPI.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP32SPIDMA.cpp
+libraries/Arduino_GFX/src/databus/Arduino_ESP8266SPI.cpp
+libraries/Arduino_GFX/src/databus/Arduino_HWSPI.cpp
+libraries/Arduino_GFX/src/databus/Arduino_mbedSPI.cpp
+libraries/Arduino_GFX/src/databus/Arduino_NRFXSPI.cpp
+libraries/Arduino_GFX/src/databus/Arduino_RPiPicoPAR16.cpp
+libraries/Arduino_GFX/src/databus/Arduino_RPiPicoPAR8.cpp
+libraries/Arduino_GFX/src/databus/Arduino_RPiPicoSPI.cpp
+libraries/Arduino_GFX/src/databus/Arduino_RTLPAR8.cpp
+libraries/Arduino_GFX/src/databus/Arduino_STM32PAR8.cpp
+libraries/Arduino_GFX/src/databus/Arduino_SWPAR16.cpp
+libraries/Arduino_GFX/src/databus/Arduino_SWPAR8.cpp
+libraries/Arduino_GFX/src/databus/Arduino_SWSPI.cpp
+libraries/Arduino_GFX/src/databus/Arduino_UNOPAR8.cpp
+libraries/Arduino_GFX/src/databus/Arduino_Wire.cpp
+libraries/Arduino_GFX/src/databus/Arduino_XCA9554SWSPI.cpp
+libraries/Arduino_GFX/src/databus/Arduino_XL9535SWSPI.cpp
+libraries/Arduino_GFX/src/display/Arduino_AXS15231B.cpp
+libraries/Arduino_GFX/src/display/Arduino_CO5300.cpp
+libraries/Arduino_GFX/src/display/Arduino_DSI_Display.cpp
+libraries/Arduino_GFX/src/display/Arduino_GC9106.cpp
+libraries/Arduino_GFX/src/display/Arduino_GC9107.cpp
+libraries/Arduino_GFX/src/display/Arduino_GC9A01.cpp
+libraries/Arduino_GFX/src/display/Arduino_GC9C01.cpp
+libraries/Arduino_GFX/src/display/Arduino_HX8347C.cpp
+libraries/Arduino_GFX/src/display/Arduino_HX8347D.cpp
+libraries/Arduino_GFX/src/display/Arduino_HX8352C.cpp
+libraries/Arduino_GFX/src/display/Arduino_HX8357A.cpp
+libraries/Arduino_GFX/src/display/Arduino_HX8357B.cpp
+libraries/Arduino_GFX/src/display/Arduino_HX8369A.cpp
+libraries/Arduino_GFX/src/display/Arduino_ILI9225.cpp
+libraries/Arduino_GFX/src/display/Arduino_ILI9331.cpp
+libraries/Arduino_GFX/src/display/Arduino_ILI9341.cpp
+libraries/Arduino_GFX/src/display/Arduino_ILI9342.cpp
+libraries/Arduino_GFX/src/display/Arduino_ILI9481_18bit.cpp
+libraries/Arduino_GFX/src/display/Arduino_ILI9486.cpp
+libraries/Arduino_GFX/src/display/Arduino_ILI9486_18bit.cpp
+libraries/Arduino_GFX/src/display/Arduino_ILI9488.cpp
+libraries/Arduino_GFX/src/display/Arduino_ILI9488_18bit.cpp
+libraries/Arduino_GFX/src/display/Arduino_ILI9488_3bit.cpp
+libraries/Arduino_GFX/src/display/Arduino_ILI9806.cpp
+libraries/Arduino_GFX/src/display/Arduino_JBT6K71.cpp
+libraries/Arduino_GFX/src/display/Arduino_JD9613.cpp
+libraries/Arduino_GFX/src/display/Arduino_NT35310.cpp
+libraries/Arduino_GFX/src/display/Arduino_NT35510.cpp
+libraries/Arduino_GFX/src/display/Arduino_NT39125.cpp
+libraries/Arduino_GFX/src/display/Arduino_NV3007.cpp
+libraries/Arduino_GFX/src/display/Arduino_NV3023.cpp
+libraries/Arduino_GFX/src/display/Arduino_NV3041A.cpp
+libraries/Arduino_GFX/src/display/Arduino_OTM8009A.cpp
+libraries/Arduino_GFX/src/display/Arduino_R61529.cpp
+libraries/Arduino_GFX/src/display/Arduino_RGB_Display.cpp
+libraries/Arduino_GFX/src/display/Arduino_RM67162.cpp
+libraries/Arduino_GFX/src/display/Arduino_RM690B0.cpp
+libraries/Arduino_GFX/src/display/Arduino_SEPS525.cpp
+libraries/Arduino_GFX/src/display/Arduino_SH1106.cpp
+libraries/Arduino_GFX/src/display/Arduino_SH8601.cpp
+libraries/Arduino_GFX/src/display/Arduino_SPD2010.cpp
+libraries/Arduino_GFX/src/display/Arduino_SSD1283A.cpp
+libraries/Arduino_GFX/src/display/Arduino_SSD1306.cpp
+libraries/Arduino_GFX/src/display/Arduino_SSD1331.cpp
+libraries/Arduino_GFX/src/display/Arduino_SSD1351.cpp
+libraries/Arduino_GFX/src/display/Arduino_ST7735.cpp
+libraries/Arduino_GFX/src/display/Arduino_ST7789.cpp
+libraries/Arduino_GFX/src/display/Arduino_ST77916.cpp
+libraries/Arduino_GFX/src/display/Arduino_ST7796.cpp
+libraries/Arduino_GFX/src/display/Arduino_WEA2012.cpp)
+
 
 set(ARDUINO_LIBRARY_ArduinoOTA_SRCS libraries/ArduinoOTA/src/ArduinoOTA.cpp)
 
@@ -405,7 +507,7 @@ set(ARDUINO_LIBRARY_BLE_SRCS
 
 set(ARDUINO_LIBRARIES_SRCS)
 set(ARDUINO_LIBRARIES_REQUIRES)
-set(ARDUINO_LIBRARIES_INCLUDEDIRS libraries/M5Unified/src/ libraries/M5GFX/src/)
+set(ARDUINO_LIBRARIES_INCLUDEDIRS libraries/M5Unified/src/ libraries/M5GFX/src/ libraries/Arduino_GFX/src/)
 
 foreach(libname IN LISTS ARDUINO_ALL_LIBRARIES)
   if(NOT CONFIG_ARDUINO_SELECTIVE_COMPILATION OR CONFIG_ARDUINO_SELECTIVE_${libname})

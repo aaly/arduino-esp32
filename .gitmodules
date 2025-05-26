@@ -4,3 +4,6 @@
 [submodule "libraries/M5GFX"]
 	path = libraries/M5GFX
 	url = https://github.com/aaly/M5GFX.git
+[submodule "libraries/Arduino_GFX"]
+	path = libraries/Arduino_GFX
+	url = https://github.com/aaly/Arduino_GFX.git
